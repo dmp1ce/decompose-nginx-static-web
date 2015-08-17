@@ -1,0 +1,12 @@
+DECOMPOSE_PROCESSES=( 'env' )
+
+_decompose-process-env() {
+  echo "$PROJECT_ENVIRONMENT"
+  echo "PRODUCTION: $PRODUCTION"
+  echo "DEVELOPMENT: $DEVELOPMENT"
+}
+_decompose-process-env_help() {
+  echo "  Show environment setting"
+}
+
+# vim:syntax=sh
