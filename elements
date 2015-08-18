@@ -1,4 +1,3 @@
-#!/bin/bash
 PROJECT_ENVIRONMENT="development"
 PROJECT_PRODUCTION_SERVER="dev"
 
@@ -16,3 +15,4 @@ _decompose-elements-post() {
     export PROJECT_NGINX_VIRTUAL_HOST=$PROJECT_NGINX_VIRTUAL_HOST_DEV
   fi
 }
+# vim:syntax=sh

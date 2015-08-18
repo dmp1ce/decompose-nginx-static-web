@@ -1,13 +1,8 @@
 web:
   build: containers/web/.
-  volumes_from:
-    - source
   environment:
-    - VIRTUAL_HOST=daveparrish.local
-source:
-  build: containers/source/.
-  command: "true"
+    - VIRTUAL_HOST={{PROJECT_NGINX_VIRTUAL_HOST_DEV}}
   volumes:
-    - containers/source/hakyll:/home/hakyll/hakyll
+    - {{#DEVELOPMENT}}./containers/web/html:{{/DEVELOPMENT}}/usr/share/nginx/html
 
 # vim:syntax=yaml
