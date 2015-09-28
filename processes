@@ -29,7 +29,7 @@ _decompose-process-build() {
   # Remove 'source' container if this is production
   echo "Rebuilding/recreating all containers..."
   if [[ $PRODUCTION ]]; then
-    docker-compose rm -f source
+    docker-compose rm -f web
   fi
 
   docker-compose build
