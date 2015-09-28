@@ -31,10 +31,11 @@ _decompose-process-build() {
   if [[ $PRODUCTION ]]; then
     docker-compose stop web
     docker-compose rm -f web
+    docker-compose build
     docker-compose up -d
+  else
+    docker-compose build
   fi
-
-  docker-compose build
 }
 _decompose-process-build_help() {
   echo "  Build the project"
