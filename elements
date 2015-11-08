@@ -2,6 +2,8 @@
 source $(_decompose-project-root)/.decompose/environment/lib/web/elements
 source $(_decompose-project-root)/.decompose/environment/lib/backup/elements
 
+ELEMENTS_POST_PROCESS=( "${ELEMENTS_WEB_POST_PROCESS[@]}" )
+
 PROJECT_ENVIRONMENT="development"
 
 PROJECT_NGINX_VIRTUAL_HOST="upgrade-test.local"
@@ -9,14 +11,4 @@ PROJECT_NGINX_VIRTUAL_HOST_ALTS=""
 
 # Where to write current version information to
 PROJECT_VERSION_FILE="containers/web/html/version.txt"
-
-ELEMENTS_POST_PROCESS=( 'post' )
-
-_decompose-elements-post() {
-  if [ "$PROJECT_ENVIRONMENT" == "production" ]; then
-    export PRODUCTION=true; unset DEVELOPMENT
-  else
-    export DEVELOPMENT=true; unset PRODUCTION
-  fi
-}
 # vim:syntax=sh
