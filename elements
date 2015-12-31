@@ -1,14 +1,16 @@
 # Include common elements
 source $(_decompose-project-root)/.decompose/environment/lib/web/elements
 source $(_decompose-project-root)/.decompose/environment/lib/backup/elements
+source $(_decompose-project-root)/.decompose/environment/lib/web/elements
 
 ELEMENTS_POST_PROCESS=( "${ELEMENTS_WEB_POST_PROCESS[@]}" )
 
 PROJECT_ENVIRONMENT="development"
 
-PROJECT_NGINX_VIRTUAL_HOST="upgrade-test.local"
+PROJECT_NGINX_VIRTUAL_HOST="mysite.local"
 PROJECT_NGINX_VIRTUAL_HOST_ALTS=""
 
 # Where to write current version information to
 PROJECT_VERSION_FILE="containers/web/html/version.txt"
+
 # vim:syntax=sh

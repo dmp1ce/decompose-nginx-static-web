@@ -1,9 +1,19 @@
+# Include constant elements
+source $(_decompose-project-root)/elements
+
+_PROJECT_NAME="mysite"
+
 PROJECT_ENVIRONMENT="development"
+PROJECT_NGINX_VIRTUAL_HOST="$_PROJECT_NAME"".local"
+PROJECT_NGINX_VIRTUAL_HOST_ALTS="www.$_PROJECT_NAME"".local"
+PROJECT_NGINX_PROXY_VIRTUAL_HOSTS=$(echo "$PROJECT_NGINX_VIRTUAL_HOST $PROJECT_NGINX_VIRTUAL_HOST_ALTS" | tr ' ' ,)
 
-PROJECT_NGINX_VIRTUAL_HOST="mysite.local"
-PROJECT_NGINX_VIRTUAL_HOST_ALTS=""
+# Let's Encrypt support
+PROJECT_LETSENCRYPT_EMAIL="user@domain.com"
 
-# Where to write current version information to
-PROJECT_VERSION_FILE="containers/web/html/version.txt"
+# Production server settings (for updating)
+PROJECT_PRODUCTION_SERVER_IP=""
+PROJECT_PRODUCTION_SERVER_USER="$_PROJECT_NAME"
+PROJECT_PRODUCTION_SERVER_BASE_PATH="$_PROJECT_NAME""-base"
 
 # vim:syntax=sh

@@ -2,35 +2,17 @@
 source $(_decompose-project-root)/.decompose/environment/lib/web/processes
 source $(_decompose-project-root)/.decompose/environment/lib/common/processes
 source $(_decompose-project-root)/.decompose/environment/lib/backup/processes
+source $(_decompose-project-root)/.decompose/environment/lib/docker/processes
 
 DECOMPOSE_PROCESSES=( 'build' 'up'
   "${DECOMPOSE_WEB_PROCESSES[@]}" "${DECOMPOSE_COMMON_PROCESSES[@]}"
   "${DECOMPOSE_BACKUP_PROCESSES[@]}" )
 
 _decompose-process-build() {
-  echo "Building decompose templates..."
-  decompose-process-templates
-
-  echo "Creating version file..."
-  local project_root=$(_decompose-project-root)
-  local git_base_revision="`git -C $project_root describe --tags --match=v* --always --dirty 2>&1`"
-  # Set current base version
-  echo -e "$PROJECT_ENVIRONMENT\n$git_base_revision" > \
-    "$project_root"/"$PROJECT_VERSION_FILE"
-
-  echo "Updating nginx_proxy image..."
-  docker pull "$PROJECT_NGINX_PROXY_IMAGE"
-
-  # Remove 'source' container if this is production
-  echo "Rebuilding/recreating all containers..."
-  if [[ $PRODUCTION ]]; then
-    docker-compose build --pull
-    docker-compose stop web
-    docker-compose rm -f web
-    docker-compose up -d
-  else
-    docker-compose build --pull
-  fi
+  _decompose-process-common-build
+  _decompose-process-build_version_file
+  _decompose-process_nginx_proxy_build
+  _decompose-process-docker-build
 }
 _decompose-process-build_help() {
   echo "  Build the project"
