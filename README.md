@@ -10,6 +10,5 @@ Static website environment for Decompose intended to help developers quickly sta
 
 ``` bash
 decompose --init https://github.com/dmp1ce/decompose-nginx-static-web.git
-
 decompose build && decompose up
 ```
