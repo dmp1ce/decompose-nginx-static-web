@@ -9,6 +9,7 @@ PROJECT_NGINX_VIRTUAL_HOST_ALTS="www.$_PROJECT_NAME"".local"
 PROJECT_NGINX_PROXY_VIRTUAL_HOSTS=$(echo "$PROJECT_NGINX_VIRTUAL_HOST $PROJECT_NGINX_VIRTUAL_HOST_ALTS" | tr ' ' ,)
 
 # Let's Encrypt support
+#PROJECT_LETSENCRYPT=true
 PROJECT_LETSENCRYPT_EMAIL="user@domain.com"
 
 # Production server settings (for updating)
