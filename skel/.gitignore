@@ -2,3 +2,4 @@
 /docker-compose.yml
 /backup_config
 /.decompose/elements
+/.decompose/processes
