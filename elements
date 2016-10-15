@@ -13,6 +13,9 @@ PROJECT_NGINX_VIRTUAL_HOST_ALTS=""
 # Where to write current version information to
 PROJECT_VERSION_FILE="containers/web/html/version.txt"
 
+# Exclude backup_config directory for backing up config
+PROJECT_BACKUP_EXCLUDES=( '.gitmodules' 'backup_config' )
+
 # Allow project elements file to override all elements
 source $(_decompose-project-root)/elements
 
